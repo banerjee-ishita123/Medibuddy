@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medibuddy</title>
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='logo.ico') }}">
+  <!-- Toastify for better notifications -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+  --green:#16a085;
+  --light-color:#777;
+  --black:#444;
+  --box-shadow:.5rem .5rem 0 rgba(22,160,133,.2);
+  --text-shadow:.5rem .5rem 0 rgba(0,0,0,.2);
+  --border:.2rem solid var(--green);
+
+
+}
+
+/* custom css  */
+*{
+  font-family: "Roboto", sans-serif;
+  margin: 0; padding: 0;
+  text-decoration: none;
+  text-transform: capitalize;
+  outline: none;
+  box-sizing: border-box;
+  transition: all .2s ease-out;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top:7rem;
+  scroll-behavior: smooth;
+}
+section{
+  padding: 2rem 9%;
+}
+
+.header{
+  padding: 2rem 9%;
+  position:fixed;
+  top: 0;left: 0;right: 0;
+  z-index:1000;
+  box-shadow:0 .5rem 1.5rem 0 rgba(0,0,0,.1);
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+.header .logo{
+  font-size:2.5rem;
+  color:var(--black);
+  
+
+}
+ .header .logo img {
+    width: 40px;  /* Adjust size */
+    height: auto;  /* Maintain aspect ratio */
+    margin-right: 10px; /* Add spacing between logo and text */
+}
+.header .logo i{
+  color:var(--green);
+  padding-right: 1rem;
+}
+.header .navbar a{
+  font-size: 1.9rem;
+  color:var(--light-color);
+  margin-left: 2rem;
+}
+.header .navbar a:hover{
+  color:var(--green);
+}
+#menu-but{
+  font-size: 2.5rem;
+  border-radius: .5rem;
+  background: #eee;
+  color: var(--green);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: none;
+
+}
+.home{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding-top: 10rem;
+}
+.home .image{
+  flex: 1 1 45rem;
+}
+.home .image img{
+  width: 100%;
+}
+.home .content{
+  flex: 1 1 45rem;
+}
+.home .content h3{
+  font-size: 4.5rem;
+  color: var(--black);
+  line-height: 1.8;
+  text-shadow: var(--text-shadow);
+}
+.home .content p{
+  font-size: 1.7rem;
+  color: var(--light-color);
+  line-height: 1.8;
+  padding: 1rem 0;
+}
+.btn{
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .5rem;
+  padding-left: 1rem;
+  border: var(--border);
+  border-radius: .5rem;
+  box-shadow: var(--box-shadow);
+  color: var(--green);
+  cursor:pointer;
+  font-size: 1.7rem;
+}
+.btn span{
+padding: .7rem 1rem;
+border-radius: .5rem;
+background: var(--green);
+color: #fff;
+margin-left: .5rem;
+}
+.btn:hover{
+  background: var(--green);
+  color: #fff;
+}
+.btn:hover span{
+  color: var(--green);
+  background: #fff;
+  margin-left: 1rem;
+}
+.heading{
+  
+  text-align: center;
+  font-size: 4rem;
+  padding: 1rem;
+  color: var(--green);
+  letter-spacing: .1rem;
+  text-shadow: var(--text-shadow);
+}
+.input_title{
+  text-align: center;
+  padding: 0rem 1rem;
+  font-size: 2rem;
+  color:var(--black);
+  font-weight: 300;
+}
+.input-health .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:1rem 0;
+  width: 97%;
+  margin: 4rem auto;
+  border-radius: .5rem;
+  box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+  overflow: hidden;
+  background:#fcf8f8;
+  
+}
+.input-health .box .images img{
+width: 50vw;
+height: 80vh;
+padding-right: 10rem;
+
+
+}
+.input-health .box .form-container{
+width: 100%;
+padding-bottom: 10rem;
+
+}
+.input-health .box .form-container input{
+height: 4rem;
+width: 87%;
+background: #eee;
+border: none;
+border-radius: 4.2rem;
+padding: 0 1rem;
+margin: 1rem 0;
+color: var(--black);
+font-size: 1.7rem;
+}
+.input-health .box .form-container label{
+  margin-bottom: 5rem;
+  font-size: 2.5rem;
+ padding-bottom: 3rem;
+  color: var(--green);
+}
+.input-health .box .form-container input:focus{
+  border: .2rem solid var(--green);
+}
+
+.btn{
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .5rem;
+  padding-left: 1rem;
+  border: var(--border);
+  border-radius: .5rem;
+  box-shadow: var(--box-shadow);
+  color: var(--green);
+  cursor:pointer;
+  font-size: 1.7rem;
+}
+.btn span{
+padding: .7rem 1rem;
+border-radius: .5rem;
+background: var(--green);
+color: #fff;
+margin-left: .5rem;
+}
+.btn:hover{
+  background: var(--green);
+  color: #fff;
+}
+.btn:hover span{
+  color: var(--green);
+  background: #fff;
+  margin-left: 1rem;
+}
+.about .row{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 97%;
+  margin: 4rem auto;
+  border-radius: .5rem;
+  box-shadow: 0 .3rem .5rem rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background:#fcf8f8;
+  
+}
+.about .row .images{
+  flex: 1 1 45rem;
+}
+.about .row .images img{
+ width: 90%;
+ height: 80%;
+}
+.about .row .content{
+  flex: 1 1 45rem;
+}
+.about .row .content h3{
+  color:var(--black);
+  text-shadow: var(--text-shadow);
+  font-size: 3rem;
+  line-height: 1.8;
+}
+.about .row .content p{
+  color:var(--light-color);
+ padding: 2rem 0;
+  font-size: 1.4rem;
+  line-height: 1.8;
+}
+.contact{
+  position: relative;
+  padding: 2rem;
+  overflow: hidden;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form{
+  width: 82%;
+  
+  height: 450px;
+  background: #fcf8f8;
+  border-radius: 10px;
+  box-shadow:0 .3rem .5rem rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: grid;
+  overflow: hidden;
+  grid-template-columns: repeat(2,1fr);
+}
+.contact-form{
+background-color: var(--green);
+position: relative;
+}
+.circle {
+  border-radius: 50%;
+  background: linear-gradient(135deg, transparent 20%, #0e6f5c);
+  position: absolute;
+}
+.circle.one {
+  width: 130px;
+  height: 130px;
+  top: 130px;
+  right: -40px;
+}
+
+.circle.two {
+  width: 80px;
+  height: 80px;
+  top: 10px;
+  right: 30px;
+}
+.contact-form::before {
+  content: "";
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background-color: var(--green);
+  transform: rotate(45deg);
+  top: 50px;
+  left: -13px;
+}
+form {
+  padding: 2.3rem 2.2rem;
+  z-index: 10;
+  overflow: hidden;
+  position: relative;
+}
+
+.title {
+  color: #fff;
+  font-weight: 500;
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.7rem;
+}
+
+.input-container  {
+  position: relative;
+  margin: 2rem 0;
+}
+.input-container  input::placeholder{
+  color: #fff;
+}
+.input {
+  width: 100%;
+  outline: none;
+  border: 2px solid #fafafa;
+  background: none;
+  padding: 0.6rem 1.2rem;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+
+textarea.input {
+  padding: 0.8rem 1.2rem;
+  min-height: 150px;
+  border-radius: 22px;
+  resize: none;
+  overflow-y: auto;
+}
+
+.input-container label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  padding: 0 0.4rem;
+  color: #fafafa;
+  font-size: 0.9rem;
+  font-weight: 400;
+  pointer-events: none;
+  z-index: 1000;
+  transition: 0.5s;
+}
+
+.input-container .textarea label {
+  top: 1rem;
+  transform: translateY(0);
+  margin-bottom: 5rem;
+  font-size: 2.5rem;
+ padding-bottom: 3rem;
+  color: var(--light-color);
+}
+
+.but {
+  padding: 0.6rem 1.3rem;
+  background-color: #fff;
+  border: 2px solid #fafafa;
+  font-size: 0.95rem;
+  color: #1abc9c;
+  line-height: 1;
+  border-radius: 25px;
+  outline: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0;
+ 
+}
+
+.but:hover {
+  background-color: transparent;
+  color: #fff;
+}
+
+.input-container span {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  transform: translateY(-50%);
+  font-size: 0.8rem;
+  padding: 0 0.4rem;
+  color: transparent;
+  pointer-events: none;
+  z-index: 500;
+}
+
+.input-container span:before,
+.input-container span:after {
+  content: "";
+  position: absolute;
+  width: 10%;
+  opacity: 0;
+  transition: 0.3s;
+  height: 5px;
+  background-color: #1abc9c;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.input-container span:before {
+  left: 50%;
+}
+
+.input-container span:after {
+  right: 50%;
+}
+
+.input-container.focus label {
+  top: 0;
+  transform: translateY(-50%);
+  left: 25px;
+  font-size: 0.8rem;
+}
+
+.input-container.focus span:before,
+.input-container.focus span:after {
+  width: 50%;
+  opacity: 1;
+}
+.contact-info {
+  padding: 2.3rem 2.2rem;
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.contact-info .title {
+  color: #1abc9c;
+  font-size: 3rem;
+}
+
+.text {
+  color: #333;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.information {
+  display: flex;
+  color: #555;
+  margin: 0.7rem 0;
+  align-items: center;
+  font-size:1.5rem;
+}
+
+.icon {
+  width: 28px;
+  margin-right: 0.7rem;
+}
+
+.social-media {
+  padding: 2rem 0 0 0;
+}
+
+.social-media p {
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.social-icons {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #1abc9c, #149279);
+  color: #fff;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 0.5rem;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.05);
+}
+
+.contact-info:before {
+  content: "";
+  position: absolute;
+  width: 110px;
+  height: 100px;
+  border: 22px solid #1abc9c;
+  border-radius: 50%;
+  bottom: -77px;
+  right: 50px;
+  opacity: 0.3;
+}
+.footer{
+  background: #eeecec;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 3rem;
+  margin-top: 10rem;
+ }
+
+ .footer .box{
+  width: 30rem;
+  margin: 2rem;
+  text-align: center;
+ }
+
+ .footer .box:nth-child(1){
+  text-align: left;
+ }
+
+/* logo  */
+
+.footer .box .logo{
+  padding: 2rem 0;
+  font-size: 3rem;
+  color: var(--wight);
+}
+
+.footer .box .logo:hover{
+  color: var(--blue);
+}
+
+.footer .box .logo span{
+  color: var(--blue);
+}
+
+.footer .box p{
+  font-size: 1.5rem;
+  color: var(--wight);
+}
+
+.footer .box a{
+  color: var(--wight);
+  font-size: 2rem;
+  display: block;
+  padding: .2rem 0;
+}
+
+.footer .box a:hover{
+  text-decoration: underline;
+}
+
+
+
+.footer .credit{
+  width: 85%;
+  padding-top: 1rem;
+  font-size: 2rem;
+  color:var(--light-color);
+  text-align: center;
+  border-top: .2rem solid var(--wight);
+}
+
+.footer .credit span{
+  color: var(--green);
+  text-decoration: underline;
+  letter-spacing: .5rem;
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.wrapper{
+    font-family: 'poppins',sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #fafafa;
+}
+.wrapper h1{
+    
+    margin: 25px;
+}
+.wrapper p{
+  font-size: medium;
+  color: #6c757d;
+}
+.content-box{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 1000px;
+    margin-top: 30px;
+}
+.card{
+    min-height: 220px;
+    width: 320px;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #fff;
+    margin: 10px 4px;
+    box-shadow: 0px 15px 30px rgba(0,0,0,0.2);
+}
+.card i{
+  color: var(--green);
+  font-size: 4rem;
+  padding-bottom: .5rem;
+}
+.card h2{
+  color: var(--black);
+  font-size: 2.5rem;
+  padding: 1rem 0;
+}
+.card p{
+    color: #6c757d;
+    text-align: center;
+    font-size: medium;
+}
+.card:hover i,
+.card:hover p{
+    color: #fff;
+}
+.card:hover h2{
+    font-weight: 600;
+}
+.card:nth-child(1):hover{
+    background: linear-gradient(45deg,
+                                   rgba(60, 131, 109, 0.7) 0% ,
+                                   rgba(130, 217, 195, 0.7)100% ) ,
+                                    url('bg.jpg');
+                                    background-size: cover;
+}
+.card:nth-child(2):hover{
+    background: linear-gradient(45deg,
+                                   rgba(60, 131, 109, 0.7) 0% ,
+                                   rgba(130, 217, 195, 0.7)100% ) ,
+                                    url('bg2.jpg');
+                                    background-size: cover;
+}
+.card:nth-child(3):hover{
+    background: linear-gradient(45deg,
+    rgba(60, 131, 109, 0.7) 0% ,
+    rgba(130, 217, 195, 0.7)100% ) ,
+                                    url('bg3.jpg');
+                                    background-size: cover;
+}
+.card:nth-child(4):hover{
+    background: linear-gradient(45deg,
+    rgba(60, 131, 109, 0.7) 0% ,
+    rgba(130, 217, 195, 0.7)100% ) ,
+                                    url('bg4.jpg');
+                                    background-size: cover;
+}
+.card:nth-child(5):hover{
+    background: linear-gradient(45deg,
+    rgba(60, 131, 109, 0.7) 0% ,
+    rgba(130, 217, 195, 0.7)100% ) ,
+                                    url('bg5.jpg');
+                                    background-size: cover;
+}
+.card:nth-child(6):hover{
+    background: linear-gradient(45deg,
+    rgba(60, 131, 109, 0.7) 0% ,
+    rgba(130, 217, 195, 0.7)100% ) ,
+                                    url('bg2.jpg');
+                                    background-size: cover;
+}
+@media(max-width:991px){
+    .wrapper{
+        padding: 25px;
+    }
+    .wrapper h1{
+        font-size: 2.5em;
+        font-weight: 600;
+    }
+    .content-box{
+        flex-direction: column;
+        width: 100%;
+    }
+    .card{
+        min-width: 300px;
+        margin: 10px auto;
+    }
+}
+
+@media(max-width:991px){
+  html{
+    font-size:55%;
+  }
+  .header{
+    padding: 2rem;
+  }
+  section{
+    padding: 2;
+  }
+}
+@media(max-width:768px){
+#menu-but{
+  display: initial;}
+.header .navbar{
+position:absolute;
+top:115%; right: 2rem;
+border-radius: .5rem;
+box-shadow: var(--box-shadow);
+width:30rem;
+background: #fff;
+border: var(--border);
+transform: scale(0);
+opacity: 0;
+transform-origin: top right;
+transition: none;
+}
+.header .navbar.active{
+  transform: scale(1);
+opacity: 1;
+transition:.2s ease-out;
+}
+  .header .navbar a{
+  font-size:2rem;
+  display: block;
+  margin: 2rem;
+}
+.input-health .box{
+    flex-flow: column;
+   }
+
+   .input-health .box .images img{
+    height: 50vh;
+    width: 90vw;
+   }
+
+   .input-health .box .form-container{
+    width: 90%;
+    padding: 0;
+   }
+   .about .row{
+    flex-flow: column;
+   }
+
+   .about .row .images img{
+    height: 50vh;
+    width: 90vw;
+   }
+
+   .about .row .form-container{
+    width: 90%;
+    padding: 0;
+   }
+   
+}
+@media(max-width:450px){
+  html{
+    font-size:50%;
+  }
+  
+}
+
+</style>
+<body>
+  <header class="header">
+    <a href="#"  class="logo"><img src="{{url_for('static',filename='medi_logo.png')}}" alt="">Medibuddy</a>
+    <nav class="navbar">
+      <a href="#home">Home</a>
+      <a href=#health-assistance>Health Assistance</a>
+      <a href=#about>About</a>
+      <a href="#contact" style="display: inline-block; padding: 10px 20px; background-color: #2da28d; color: white; text-decoration: none; border-radius: 5px;">Contact</a>
+
+      
+    </nav>
+    <div id="menu-but" class="fas fa-bars"></div>
+  </header>
+
+<section class="home" id="home">
+  <div class="image">
+   <img src="{{url_for('static',filename='Doctors-cuate.png')}}" alt="">
+  </div>
+  <div class="content">
+    <h3>Be Your Own Doctor</h3>
+    <p>Welcome to Medibuddy – Your Personal Health Assistant!
+
+      At Medibuddy, we harness the power of AI to help you take charge of your health. Simply enter your symptoms, and our intelligent system will predict potential diseases and provide personalized recommendations, including suitable medicines, necessary precautions, effective workout plans, and tailored diet suggestions. Your well-being is our priority—stay informed, stay healthy, and take control with Medibuddy!</p>
+    <a href=#health-assistance class="btn">Lets Start <span class="fas fa-chevron-right"></span> </a>
+  </div>
+</section>
+
+
+<section id="health-assistance" class="input-health">
+  <h1 class="heading">Your Health Assistance</h1>
+  <h3 class="input_title">Accurately predict diseases based on your symptoms and get personalized health recommendations instantly.</h3>
+  
+    <div class="box">
+      <div class="images">
+        <img src="{{url_for('static',filename='Doctors-pana.png')}}" alt="">
+      </div>
+      <form action="/predict" method="post">
+      <div class="form-container">
+        <label for="symptoms">Enter your symtoms</label>
+        <input type="text" name="symptoms" placeholder="Enter your symptoms">
+     <button class="btn" >See result<span class="fas fa-chevron-right"></span></button>
+    </div>
+</form>
+ </div>
+</section>
+<section>
+  <div class="wrapper">
+    <h1 class="heading">Our Services</h1>
+    <p>Our AI-driven platform offers disease prediction, personalized diets, drug recommendations, precautions, and workout suggestions for better health.</p>
+         <div class="content-box">
+            <div class="card">
+              <i class='fas fa-diagnoses'></i>
+                <h2>Predict Disease</h2>
+              <p>Get accurate AI-powered disease predictions based on your symptoms. </p>
+
+            </div>
+            <div class="card">
+              <i class="fas fa-capsules"></i>
+                <h2>Drug Recomendation</h2>
+               <p>Get suitable medication recommendations for effective treatment.</p>
+                     
+            </div>
+            <div class="card">
+              <i class="fas fa-book-medical"></i>
+
+                <h2>Description</h2>
+            <p>A BPO call center is a team of outsourced agents who handle incoming and outgoing.</p>
+                     
+            </div>
+            <div class="card">
+              <i class="fas fa-file-medical-alt"></i>
+                <h2>Precaution</h2>
+                <p>Stay informed with essential precautions to manage your health better.</p>
+                     
+            </div>
+            <div class="card">
+              <i class="fas fa-running"></i>
+                <h2>Workouts</h2>
+                <p> Discover recommended workouts to support your recovery and fitness.</p>
+                     
+            </div>
+            <div class="card">
+              <i class="fas fa-calendar-check"></i>
+                <h2>Diets</h2>
+                <p> Receive personalized diet plans tailored to your health condition.</p>
+                     
+            </div>
+         </div>
+</div>
+</section>
+<section class="about" id="about">
+  <h1 class="heading"><span>about</span> us</h1>
+  <div class="row">
+    <div class="images">
+      <img src="{{url_for('static',filename='Doctor-pana.png')}}">
+    </div>
+    <div class="content">
+      <h3>We take care of your healthy life</h3>
+      <p>At Medibuddy, we are committed to revolutionizing healthcare through AI-driven solutions. Our platform empowers users with accurate disease predictions, personalized medicine suggestions, essential precautions, tailored workout plans, and diet recommendations—all in one place. We believe in making healthcare accessible, efficient, and user-friendly, ensuring you get the right guidance at the right time.</p>
+
+    </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  
+  <div class="form">
+    <div class="contact-info">
+      <h3 class="title">Let's get in touch</h3>
+          <p class="text">
+            Have questions or need assistance? We're here to help! Contact us for inquiries, support, or feedback. Your health matters to us, and we’re committed to providing the best assistance possible
+          </p>
+
+          <div class="info">
+            <div class="information">
+              <img src="{{url_for('static',filename='location.png')}}" class="icon" alt="" />
+              <p>singur,Hooghly,West Bengal</p>
+            </div>
+            <div class="information">
+              <img src="{{url_for('static',filename='email.png')}}" class="icon" alt="" />
+              <p>ishitabanerjee15012005@gmail.com</p>
+            </div>
+            <div class="information">
+              <img src="{{url_for('static',filename='phone.png')}}" class="icon" alt="" />
+              <p>7603065390</p>
+            </div>
+          </div>
+
+          <div class="social-media">
+            <p>Connect with us :</p>
+            <div class="social-icons">
+              <a href="#">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+    </div>
+    <div class="contact-form">
+      <span class="circle one"></span>
+      <span class="circle two"></span>
+      <form action="https://api.web3forms.com/submit" method="POST">
+        <h3 class="title">Contact us</h3>
+        <div class="input-container">
+          <input type="hidden" name="access_key" value="b2682458-70f7-44b7-b3b6-1daae7d881fb">
+          <input type="text" name="name" class="input" placeholder="Username"/>
+          <label for=""></label>
+          <span></span>
+        </div>
+        <div class="input-container">
+          <input type="email" name="email" class="input" placeholder="email" />
+          <label for=""></label>
+          <span></span>
+        </div>
+        <div class="input-container">
+          <input type="tel" name="phone" class="input" placeholder=" phonenumber"/>
+          <label for=""></label>
+          <span></span>
+        </div>
+        <div class="input-container textarea">
+          <textarea name="message" class="input"> </textarea>
+          <label for=""></label>
+          <span></span>
+        </div>
+        <input type="submit" value="Send" class="but" />
+      </form>
+    </div>
+  </div>
+</section>
+<section class="footer">
+
+  <div class="box">
+      <h2 class="logo"><i class="fas fa-heartbeat"></i>Medibuddy</h2>
+
+      <p> We believe in making healthcare accessible, efficient, and user-friendly, ensuring you get the right guidance at the right time</p>
+  </div>
+
+  <div class="box">
+      <h2 class="logo"><span>follow</span>us</h2>
+
+      <a href="#">facebook</a>
+      <a href="#">twitter</a>
+      <a href="#">instagram</a>
+      <a href="#">Linkdin</a>
+  </div>
+
+  <div class="box">
+      <h2 class="logo"><span>Quick</span>Links</h2>
+
+      <a href="#home">home</a>
+      <a href="#health_assistance">health_assistance</a>
+      <a href="#about">About</a>
+      <a href="#contact">contact</a>
+   
+  </div>
+  <div class="credit-foot">
+    <h1 class="credit">created by <span> Ishita Banerjee </span> all right reserved.</h1>
+  </div>
+
+</section>
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script >
+    let menu=document.querySelector('#menu-but');
+    let nav=document.querySelector('.navbar');
+    menu.onclick=()=>{
+      menu.classList.toggle('fa-times');
+      nav.classList.toggle('active');
+    }
+window.onscroll=()=>{
+menu.classList.remove('fa-times');
+nav.classList.remove('active');
+    }
+    document.addEventListener("DOMContentLoaded", function() {
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    Toastify({
+                        text: "{{ message | safe }}",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "center",
+                        style: {
+                            background: "{{ 'orange' if category == 'error' else 'green' }}",
+                            color: "white",
+                            borderRadius: "8px",
+                            padding: "10px",
+                            fontSize: "18px",  /* Increased Font Size */
+                    fontWeight: "bold"
+                        }
+                    }).showToast();
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    });
+  </script>
+</body>
+</html>

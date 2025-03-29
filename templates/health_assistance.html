@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Be your own doctor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+  --green:#16a085;
+  --light-color:#777;
+  --black:#444;
+  --box-shadow:.5rem .5rem 0 rgba(22,160,133,.2);
+  --text-shadow:.5rem .5rem 0 rgba(0,0,0,.2);
+  --border:.2rem solid var(--green);
+
+
+}
+
+/* custom css  */
+*{
+  font-family: "Roboto", sans-serif;
+  margin: 0; padding: 0;
+  text-decoration: none;
+  text-transform: capitalize;
+  outline: none;
+  box-sizing: border-box;
+  transition: all .2s ease-out;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top:7rem;
+  scroll-behavior: smooth;
+}
+section{
+  padding: 2rem 9%;
+}
+.input{
+padding-top: 10rem;
+background: #f9f9f9;
+}
+
+.header{
+  padding: 2rem 9%;
+  position:fixed;
+  top: 0;left: 0;right: 0;
+  z-index:1000;
+  box-shadow:0 .5rem 1.5rem 0 rgba(0,0,0,.1);
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+.header .logo{
+  font-size:2.5rem;
+  color:var(--black);
+
+}
+.header .logo i{
+  color:var(--green)
+}
+.header .navbar a{
+  font-size: 1.7rem;
+  color:var(--light-color);
+  margin-left: 2rem;
+}
+.header .navbar a:hover{
+  color:var(--green);
+}
+#menu-but{
+  font-size: 2.5rem;
+  border-radius: .5rem;
+  background: #eee;
+  color: var(--green);
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: none;
+
+}
+.heading{
+  
+  text-align: center;
+  font-size: 4rem;
+  padding: 1rem;
+  color: var(--green);
+  letter-spacing: .1rem;
+  text-shadow: var(--text-shadow);
+}
+.title{
+  text-align: center;
+  padding: 0rem 1rem;
+  font-size: 2rem;
+  color: var(--black);
+  font-weight: 300;
+}
+.input .box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:1rem 0;
+  
+}
+.input .box .images img{
+width: 50vw;
+height: 80vh;
+padding-right: 10rem;
+
+
+}
+.input .box .form-container{
+width: 100%;
+padding-bottom: 10rem;
+
+}
+.input .box .form-container input{
+height: 4rem;
+width: 100%;
+background: #eee;
+border: none;
+border-radius: 4.2rem;
+padding: 0 1rem;
+margin: 1rem 0;
+color: var(--black);
+font-size: 1.7rem;
+}
+.input .box .form-container label{
+  margin-bottom: 5rem;
+  font-size: 2.5rem;
+ padding-bottom: 3rem;
+  color: var(--green);
+}
+.input .box .form-container input:focus{
+  border: .2rem solid var(--green);
+}
+.btn{
+  display: inline-block;
+  margin-top: 1rem;
+  padding: .5rem;
+  padding-left: 1rem;
+  border: var(--border);
+  border-radius: .5rem;
+  box-shadow: var(--box-shadow);
+  color: var(--green);
+  cursor:pointer;
+  font-size: 1.7rem;
+}
+.btn span{
+padding: .7rem 1rem;
+border-radius: .5rem;
+background: var(--green);
+color: #fff;
+margin-left: .5rem;
+}
+.btn:hover{
+  background: var(--green);
+  color: #fff;
+}
+.btn:hover span{
+  color: var(--green);
+  background: #fff;
+  margin-left: 1rem;
+}
+@media(max-width:991px){
+  html{
+    font-size:55%;
+  }
+  .header{
+    padding: 2rem;
+  }
+}
+@media(max-width:768px){
+#menu-but{
+  display: initial;}
+.header .navbar{
+position:absolute;
+top:115%; right: 2rem;
+border-radius: .5rem;
+box-shadow: var(--box-shadow);
+width:30rem;
+background: #fff;
+border: var(--border);
+transform: scale(0);
+opacity: 0;
+transform-origin: top right;
+transition: none;
+}
+.header .navbar.active{
+  transform: scale(1);
+opacity: 1;
+transition:.2s ease-out;
+}
+  .header .navbar a{
+  font-size:2rem;
+  display: block;
+  margin: 2rem;
+}
+.input .box{
+    flex-flow: column;
+   }
+
+   .input .box .images img{
+    height: 50vh;
+    width: 90vw;
+   }
+
+   .input .box .form-container{
+    width: 90%;
+    padding: 0;
+   }
+}
+@media(max-width:450px){
+  html{
+    font-size:50%;
+  }
+  
+}
+</style>
+<body>
+  <header class="header">
+    <a href="#" class="logo"><i class="fas fa-heartbeat"></i>Medibuddy</a>
+    <nav class="navbar">
+      <a href="/index">Home</a>
+      <a href="/health_assistance">Health Assistance</a>
+      <a href="/about">About</a>
+      <a href="/contact">Contact</a>
+      <a href="/login">Login</a>
+    </nav>
+    <div id="menu-but" class="fas fa-bars"></div>
+  </header>
+<section id="input" class="input">
+  <h1 class="heading">Your Health Assistance</h1>
+  <h3 class="title">Lorem ipsum dolor sit amet consectetur adipisicing elit.</h3>
+  
+    <div class="box">
+      <div class="images">
+        <img src="{{url_for('static',filename='Doctors-pana.png')}}" alt="">
+      </div>
+      <form action="/predict" method="post">
+      <div class="form-container">
+        <label for="symptoms">Enter your symtoms</label>
+     <input type="text" name="symptoms" placeholder="Enter your symptoms">
+     <button class="btn" >See result<span class="fas fa-chevron-right"></span></button>
+    </div>
+
+   
+  </form>
+ 
+    </div>
+   
+    
+</section>
+
+<script> 
+let menu=document.querySelector('#menu-but');
+  let nav=document.querySelector('.navbar');
+  menu.onclick=()=>{
+    menu.classList.toggle('fa-times');
+    nav.classList.toggle('active');
+  }
+window.onscroll=()=>{
+menu.classList.remove('fa-times');
+nav.classList.remove('active');
+  }
+  </script>
+  
+</body>
+</html>
